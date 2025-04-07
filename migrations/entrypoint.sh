@@ -7,8 +7,8 @@ SSL_MODE=disable
 GOOSE_MIGRATION_DIR=./migrations 
 #тип СУБД
 DB_TYPE=postgres
-DB_HOST=localhost
+DB_HOST=postgres_movie_service
 
-DBSTRING="host=postgres_films_service user=$DB_USER password=$DB_PASSWORD dbname=$DB_NAME sslmode=$SSL_MODE"
+DBSTRING="host=$DB_HOST user=$DB_USER password="qwerty" dbname=$DB_NAME sslmode=$SSL_MODE"
 
 goose postgres "$DBSTRING" up

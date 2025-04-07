@@ -1,13 +1,11 @@
 services:
   postgres:
-    container_name: postgres_films_service
+    container_name: postgres_movie_service
     image: postgres:15-alpine
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:5432"
     networks:
@@ -15,7 +13,7 @@ services:
     restart: unless-stopped
 
   pgadmin:
-    container_name: pgadmin_films_service
+    container_name: pgadmin_movie_service
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
@@ -42,7 +40,7 @@ services:
       - "${APP_PORT}:${APP_PORT}"
     environment:
       APP_PORT: ${APP_PORT}
-      DB_HOST: postgres_films_service
+      DB_HOST: postgres_movie_service
       DB_PORT: ${DB_PORT}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}

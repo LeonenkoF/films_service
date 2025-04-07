@@ -4,6 +4,7 @@ go 1.23.1
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.6
+	github.com/jmoiron/sqlx v1.4.0
 	github.com/ydb-platform/ydb-go-sdk/v3 v3.105.1
 )
 

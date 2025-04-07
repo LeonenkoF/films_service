@@ -22,7 +22,7 @@ WORKDIR /app
 RUN apk add --no-cache bash ca-certificates
 
 # Копируем бинарник приложения
-COPY --from=builder /app/films_service .
+COPY --from=builder /app/movie_service .
 
 FROM gomicro/goose AS final
 
