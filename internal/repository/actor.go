@@ -3,7 +3,6 @@ package repository
 import (
 	"films_service/internal/entity"
 	"films_service/internal/models"
-	"fmt"
 	"log"
 
 	"github.com/jmoiron/sqlx"
@@ -31,7 +30,7 @@ func (a *Actor) CreateActor(model models.Actor) (int, error) {
 	rows := a.db.QueryRow(query, actor.Name, actor.Gender, actor.Birth)
 	if err := rows.Scan(&id); err != nil {
 		log.Println(err)
-		return 0, fmt.Errorf("ошибка обращения к db:", err)
+		return 0, err
 	}
 	return id, nil
 }

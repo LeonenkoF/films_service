@@ -1,9 +1,11 @@
 package models
 
 type Movie struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Rating      string `json:"rating"`
+	Id           int    `json:"id"`
+	Title        string `json:"title"`
+	Description  string `json:"description"`
+	Release_date string `json"release_date"`
+	Rating       int    `json:"rating"`
 }
 
 type Actor struct {
