@@ -9,6 +9,6 @@ GOOSE_MIGRATION_DIR=./migrations
 DB_TYPE=postgres
 DB_HOST=postgres_movie_service
 
-DBSTRING="host=$DB_HOST user=$DB_USER password="qwerty" dbname=$DB_NAME sslmode=$SSL_MODE"
+DBSTRING="host=$DB_HOST user=$DB_USER password=$DB_PASSWORD dbname=$DB_NAME sslmode=$SSL_MODE"
 
 goose postgres "$DBSTRING" up

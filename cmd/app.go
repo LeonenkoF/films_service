@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"films_service/internal/api/handlers"
 	"films_service/internal/repository"
+	"films_service/internal/service"
 	"fmt"
+	"net/http"
 )
 
 func Run() error {
@@ -15,7 +18,17 @@ func Run() error {
 	repoMovie := repository.NewMovie(db)
 	repoActor := repository.NewActor(db)
 
-	fmt.Println(repoMovie, repoActor)
+	movieService := service.NewMoiveService(*repoActor, *repoMovie)
+
+	h := handlers.NewMoiveServiceHandler(movieService)
+
+	handlers.InitRoutes(h)
+
+	err = http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Print(err)
+		return err
+	}
 
 	return nil
 }

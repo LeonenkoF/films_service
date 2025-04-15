@@ -10,28 +10,21 @@ RUN go mod download
 COPY . .
 
 # Компилируем приложение
-RUN go build -o films_service ./cmd/main.go
+RUN go build -o main ./main.go
 
-
-# Финальный образ
-FROM alpine:latest
-
-WORKDIR /app
-
-# Устанавливаем необходимые пакеты (если используем Alpine)
-RUN apk add --no-cache bash ca-certificates
-
-# Копируем бинарник приложения
-COPY --from=builder /app/movie_service .
 
 FROM gomicro/goose AS final
 
-WORKDIR /migrations
+COPY --from=builder /app/main .
 
 # Копируем миграции и entrypoint.sh
 COPY ./migrations /migrations
-COPY entrypoint.sh /migrations/entrypoint.sh
+COPY entrypoint.sh /app/entrypoint.sh
 
-RUN chmod +x /migrations/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
-ENTRYPOINT ["/migrations/entrypoint.sh"]
+WORKDIR /app
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+CMD ["./main"]

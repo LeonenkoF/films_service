@@ -1,25 +1,26 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	"github.com/jmoiron/sqlx"
+)
 
-type movie struct {
+type Movie struct {
 	db *sqlx.DB
 }
 
-func NewMovie(db *sqlx.DB) *movie {
-	return &movie{
+func NewMovie(db *sqlx.DB) *Movie {
+	return &Movie{
 		db: db,
 	}
 }
 
-func (a *actor) CreateMovie() {
+func (a *Movie) CreateMovie() {
+}
+
+func (a *Movie) UpdateMovie() {
 
 }
 
-func (a *actor) UpdateMovie() {
-
-}
-
-func (a *actor) DeleteMovie() {
+func (a *Movie) DeleteMovie() {
 
 }
